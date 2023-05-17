@@ -59,7 +59,7 @@ function Contact(props) {
        </form>
             </div>
             <div className='image w-11/12 md:w-1/2 flex items-center justify-center px-6'>
-                 <img src='/image_processing20220123-2187-1ksjorh 2.png' alt='' className='w-[510px] h-[400px]'/>
+                 <img src='/image_processing20220123-2187-1ksjorh 2.png' alt='' className='w-[510px] h-[400px] object-contain'/>
             </div>
     </section>
     );

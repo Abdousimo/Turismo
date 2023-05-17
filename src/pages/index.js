@@ -11,8 +11,8 @@ export default function Home() {
   return (
     <main>
       <Header />
-      <Slider />
       <Presentation />
+      <Slider />
       <Contact />
       <Footer />
     </main>
