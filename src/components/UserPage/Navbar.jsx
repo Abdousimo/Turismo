@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { HiMagnifyingGlass } from "react-icons/hi2"
-
+import {AiOutlineDownCircle} from "react-icons/ai"
 
 
 
@@ -82,25 +82,21 @@ const Navbar = () => {
             <div className="hidden sm:block sm:ml-6 sm:w-1/2">
                 <div className="flex justify-between gap-3 items-center">
                                     {/* Navigation links */}
-                    <form className="max-w-sm mx-auto flex gap-2 bg-slate-400" onSubmit={handleSubmit}>
-                        <div className="mb-4">
-                            <input
-                            id="name"
-                            type="text"
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            placeholder="Search"
-                            value={name}
-                            onChange={handleInputChange}
-                            />
+                    <div id='Drop-down' className="w-[300px] flex justify-between bg-white rounded-lg px-4 py-3 border-s-yellow-500">
+                        <div>
+                        <h4 className='text-indigo-700 font-OPENSANS font-bold'>Destination</h4>  
+                        <p>Indicate your preferences</p>
                         </div>
-                        <div className='flex items-center justify-center text-white'>
-                            <HiMagnifyingGlass size={30}/>
-                        </div>
-                    </form>
-                    
-                                
-                        </div>
+                        <div className='text-slate-400'>
+                        <AiOutlineDownCircle size={25}/>
+                        </div> 
                     </div>
+                    <button className="max-w-sm w-36 h-10 mx-auto flex justify-between items-center px-2 rounded-lg bg-slate-400 text-white">
+                        <span>Search</span>
+                        <HiMagnifyingGlass size={20}/>
+                    </button>
+                </div>
+            </div>
                 </div>
             </div>
         </div>
