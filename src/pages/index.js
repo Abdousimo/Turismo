@@ -1,5 +1,5 @@
 import Header from "@/components/LandingPage/Header";
-import Navbar from "@/components/LandingPage/Navbar";
+
 import Slider from "@/components/LandingPage/ImageSlider";
 import { useState } from "react";
 import Contact from "@/components/LandingPage/Contact";
