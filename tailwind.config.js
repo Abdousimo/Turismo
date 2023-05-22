@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        sm: "860px",
+      },
+
       fontFamily: {
         OPENSANS: ["Open Sans", "sans-serif"],
       },
