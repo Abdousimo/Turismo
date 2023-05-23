@@ -4,8 +4,13 @@ import {AiOutlineDownCircle,AiOutlineUpCircle} from "react-icons/ai"
 
 function Drop_down(props) {
     const[Open,setOpen] = useState(false);
-    const buttons = ["Landmarks","Museums","Public squares","Parks","Archaeological sites","Gardens","Beaches","Religious sites","Markets","Restaurant"]
-
+    const[isHistoryOpen,setIsHistoryOpen]=useState(false)
+    const buttons = [{name:"Landmarks",isSelected:false},{name:"Museums",isSelected:false},{name:"Public squares",isSelected:false},{name:"Parks",isSelected:false},{name:"Archaeological sites",isSelected:false},{name:"Gardens",isSelected:false},{name:"Beaches",isSelected:false},{name:"Religious sites",isSelected:false},{name:"Markets",isSelected:false},{name:"Restaurant",isSelected:false}]
+    const setButton =(button)=>{
+        let state = !(button.isSelected)
+        button.isSelected = state
+        console.log(button.isSelected);
+    }
     return (
         <section className="w-[300px] max-w-[350px] h-14 flex flex-col justify-between items-center bg-white rounded-lg" style={{borderBottom:"solid 2px #FFC100"}}>
            
@@ -30,15 +35,16 @@ function Drop_down(props) {
                   <h1 className='font-OPENSANS text-indigo-700 font-bold'>Category</h1>
                   <div className='w-full flex flex-wrap gap-3 px-2'>
                   {buttons.map((button,index)=>(
-                    <button key={index} className='bg-[#DEDEDE94] text-[#003554] font-OPENSANS font-semibold py-1 px-2 rounded-lg'>{button}</button>
+                    <button key={index} className={`font-OPENSANS font-semibold py-1 px-2 rounded-lg ${button.isSelected ? 'bg-blue-700 text-white' : 'bg-[#DEDEDE94] text-[#003554]'}`} onClick={()=>setButton(button)}>{button.name}</button>
                   ))}
                  </div>
+                 
             </div>
             <div className='w-full flex flex-col gap-3 px-2'>
                 <h1 className='font-OPENSANS text-indigo-700 font-bold'>Theme</h1>
                 <div className='w-11/12 h-10 bg-indigo-600 flex justify-between px-3 py-2 rounded-lg'>
                      <h3 className='text-white font-OPENSANS font-bold'>History and heritage</h3>
-                     <>kvf</>
+                     <button onClick={()=>{setIsHistoryOpen(!isHistoryOpen)}} className='text-white'>{isHistoryOpen ? <AiOutlineUpCircle size={25}/> : <AiOutlineDownCircle size={25}/>}</button>
                 </div>
             </div>
             <div className='flex justify-end my-10 pr-4'>
