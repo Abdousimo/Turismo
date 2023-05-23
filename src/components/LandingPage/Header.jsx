@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Image from 'next/image';
+import Link from 'next/link';
  
 
 function Header(props) {
@@ -14,7 +15,7 @@ function Header(props) {
                 <p className='text-5xl font-sans z-10'>Let's go for travel</p>
             </div>
             <div id='Hero'  className="w-full h-[770px] z-0 flex justify-center items-start pt-20">
-                <button className='w-[226px] h-[55px] bg-[#FFC100] hover:bg-yellow-200 font-bold text-[#fff] text-xl rounded-2xl'>L'ETS TRAVEL</button>
+                <Link href={'/User'} className='flex items-center justify-center w-[226px] h-[55px] bg-[#FFC100] hover:bg-[#FFC444] font-bold text-[#fff] text-xl rounded-2xl'>L'ETS TRAVEL</Link>
             </div>
         </section>
     );

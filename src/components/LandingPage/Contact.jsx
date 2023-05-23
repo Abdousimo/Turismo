@@ -19,7 +19,7 @@ function Contact(props) {
     setMessage('');
   };
     return (
-    <section className='w-full flex flex-col md:flex-row px-4 py-3'>
+    <section className='w-full flex flex-col md:flex-row justify-center items-center px-4 py-3'>
             <div className='form w-11/12 md:w-1/2 '>
             <form className="w-full max-w-sm mx-auto" onSubmit={handleSubmit}>
       <div className="mb-4">
