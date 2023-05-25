@@ -5,12 +5,30 @@ import {AiOutlineDownCircle,AiOutlineUpCircle} from "react-icons/ai"
 function Drop_down(props) {
     const[Open,setOpen] = useState(false);
     const[isHistoryOpen,setIsHistoryOpen]=useState(false)
-    const buttons = [{name:"Landmarks",isSelected:false},{name:"Museums",isSelected:false},{name:"Public squares",isSelected:false},{name:"Parks",isSelected:false},{name:"Archaeological sites",isSelected:false},{name:"Gardens",isSelected:false},{name:"Beaches",isSelected:false},{name:"Religious sites",isSelected:false},{name:"Markets",isSelected:false},{name:"Restaurant",isSelected:false}]
-    const setButton =(button)=>{
-        let state = !(button.isSelected)
-        button.isSelected = state
-        console.log(button.isSelected);
-    }
+    const [buttons,setButtons]=useState([
+        {name:"Landmarks",isSelected:false},
+        {name:"Museums",isSelected:false},
+        {name:"Public squares",isSelected:false},
+        {name:"Parks",isSelected:false},
+        {name:"Archaeological sites",isSelected:false},
+        {name:"Gardens",isSelected:false},
+        {name:"Beaches",isSelected:false}
+        ,{name:"Religious sites",isSelected:false},
+        {name:"Markets",isSelected:false},
+        {name:"Restaurant",isSelected:false}
+        ])
+
+        const handleClick = (id) => {
+            // Create a copy of the object array
+              const newArray = [...buttons];
+            // Modify the desired value(s) in the object
+        
+              newArray[id].isSelected = !(newArray[id].isSelected);
+        
+            // Update the state with the modified array
+            setButtons(newArray);
+          };
+    
     return (
         <section className="w-[300px] max-w-[350px] h-14 flex flex-col justify-between items-center bg-white rounded-lg" style={{borderBottom:"solid 2px #FFC100"}}>
            
@@ -35,7 +53,7 @@ function Drop_down(props) {
                   <h1 className='font-OPENSANS text-indigo-700 font-bold'>Category</h1>
                   <div className='w-full flex flex-wrap gap-3 px-2'>
                   {buttons.map((button,index)=>(
-                    <button key={index} className={`font-OPENSANS font-semibold py-1 px-2 rounded-lg ${button.isSelected ? 'bg-blue-700 text-white' : 'bg-[#DEDEDE94] text-[#003554]'}`} onClick={()=>setButton(button)}>{button.name}</button>
+                    <button key={index} className={`font-OPENSANS font-semibold py-1 px-2 rounded-lg ${button.isSelected ? 'bg-blue-700 text-white' : 'bg-[#DEDEDE94] text-[#003554]'}`} onClick={()=> handleClick(index)}>{button.name}</button>
                   ))}
                  </div>
                  
