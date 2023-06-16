@@ -95,11 +95,16 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       <div
-        className={`${isOpen ? 'block' : 'hidden'} md:hidden`}
+        className={`${isOpen ? 'block w-full' : 'hidden'} md:hidden absolute z-50`}
         id="mobile-menu"
       >
-        <div className="px-2 pt-2 pb-2 bg-slate-300 flex items-center justify-center">
-            <a>dfbivisfh</a>
+        <div className="flex flex-col gap-4 items-start justify-center px-2 py-4 bg-[#003554] border-t-white border-t-4">
+            
+            <Drop_down/>
+            <button  className="max-w-sm w-[150px] h-14 flex justify-between items-center px-2 rounded-lg bg-slate-400 text-white">
+                        <span>Search</span>
+                        <HiMagnifyingGlass size={20}/>
+                    </button>
         </div>
       </div>
         

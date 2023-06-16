@@ -1,9 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import {AiOutlineDownCircle,AiOutlineUpCircle} from "react-icons/ai"
-
+import Image from 'next/image';
 function Drop_down(props) {
     const[Open,setOpen] = useState(false);
+    const[DefaultTheme,setDefaultTheme] = useState("History and Heritage")
     const[isHistoryOpen,setIsHistoryOpen]=useState(false)
     const [buttons,setButtons]=useState([
         {name:"Landmarks",isSelected:false},
@@ -17,6 +18,18 @@ function Drop_down(props) {
         {name:"Markets",isSelected:false},
         {name:"Restaurant",isSelected:false}
         ])
+        const [Themes,setThemes] = useState([
+            {name:"History and Heritage",isSelected:true},
+            {name:"arts and culture",isSelected:false},
+            {name:"Nature and landscapes",isSelected:false},
+            {name:"Spirituality and religion",isSelected:false},
+            {name:"Entertainment and leisure",isSelected:false},
+            {name:" Gardens and green spaces",isSelected:false},
+            {name:"Markets and shopping",isSelected:false},
+            {name:"Gastronomy and cooking",isSelected:false},
+            {name:"Adventures and sports",isSelected:false},
+            {name:"Education and learning",isSelected:false}        
+        ])
 
         const handleClick = (id) => {
             // Create a copy of the object array
@@ -28,6 +41,17 @@ function Drop_down(props) {
             // Update the state with the modified array
             setButtons(newArray);
           };
+
+          const handleClickTheme = (id) =>{
+                const newArray = [...Themes];
+                newArray[id].isSelected = !(newArray[id].isSelected);
+                if (id !== 0) {
+                    newArray[0].isSelected = false;
+                }
+                    setDefaultTheme(newArray[id].name) 
+                    setThemes(newArray)
+                    setIsHistoryOpen(false)
+          }
     
     return (
         <section className="w-[300px] max-w-[350px] h-14 flex flex-col justify-between items-center bg-white rounded-lg" style={{borderBottom:"solid 2px #FFC100"}}>
@@ -45,9 +69,15 @@ function Drop_down(props) {
                          
                     
         {Open ? <div className='w-full z-50 bg-white flex flex-col gap-5 rounded-b-lg -rounded-t-lg mt-[-5px]' style={{borderBottom:"solid 6px #FFC100"}}>
-            <div className='w-full flex flex-col justify-center items-center gap-4 px-2 py-3'>
-                <button className='w-11/12 h-8 bg-black'></button>
-                <button className='w-11/12 h-8 bg-black'></button>
+            <div className='w-full flex flex-col justify-center items-center gap-4 px-2 py-3 font-OPENSANS mt-4'>
+                <button className='w-11/12 h-14 flex items-center justify-start gap-2 font-OPENSANS font-bold text-xl rounded-xl text-[#157BF6] border-2 border-[#157BF6] bg-white px-3 py-2'>
+                    <Image width={25} height={7} src="/Vector (1).png" alt=''/>
+                    <span>Chose the region</span> 
+                </button>
+                <button className='w-11/12 h-14 flex items-center justify-start gap-2 font-OPENSANS font-bold text-xl rounded-xl text-[#157BF6] border-2 border-[#157BF6] bg-white px-3 py-2'>
+                <Image width={25} height={7} src="/Vector (1).png" alt=''/>
+                <span>Choose the city</span>
+                </button>
             </div>
             <div className='w-full flex flex-col gap-4 px-2 pt-3'>
                   <h1 className='font-OPENSANS text-indigo-700 font-bold'>Category</h1>
@@ -60,9 +90,19 @@ function Drop_down(props) {
             </div>
             <div className='w-full flex flex-col gap-3 px-2'>
                 <h1 className='font-OPENSANS text-indigo-700 font-bold'>Theme</h1>
-                <div className='w-11/12 h-10 bg-indigo-600 flex justify-between px-3 py-2 rounded-lg'>
-                     <h3 className='text-white font-OPENSANS font-bold'>History and heritage</h3>
+                <div className='flex flex-col'>
+                    <div className='w-11/12 h-10 bg-indigo-600 flex justify-between pl-3 pr-[3px] py-2 rounded-lg'>
+                     <h3 className='text-white font-OPENSANS font-bold'>{DefaultTheme}</h3>
                      <button onClick={()=>{setIsHistoryOpen(!isHistoryOpen)}} className='text-white'>{isHistoryOpen ? <AiOutlineUpCircle size={25}/> : <AiOutlineDownCircle size={25}/>}</button>
+                    </div> 
+                    <div className='bg-slate-100 w-11/12'>{isHistoryOpen ?
+                    <div>{Themes.map((theme,index)=>(
+                    <button key={index} className='h-10 w-full bg-white hover:bg-slate-200 block items-start justify-center font-OPENSANS font-bold text-lg' onClick={()=> handleClickTheme(index)}>{theme.name}</button>
+                  ))} </div> : <></>  } 
+                    </div>
+                            
+                     
+                    
                 </div>
             </div>
             <div className='flex justify-end my-10 pr-4'>

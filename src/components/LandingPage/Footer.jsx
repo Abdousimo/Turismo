@@ -14,7 +14,7 @@ function Footer(props) {
                      <img src='/Asset 1 1.png' alt='' className='w-[192px] h-[183px]'/>
                 </div>
                 <div className='w-full md:1/3 flex justify-center items-center'>
-                     <button className='w-11/12 md:w-full h-10 bg-white text-indigo-700 hover:bg-indigo-600 hover:text-white font-bold flex justify-center items-center rounded-lg'>Try to visit algeria now</button>
+                     <button className='w-11/12 md:w-full h-10 bg-white text-indigo-700 font-bold flex justify-center items-center rounded-lg'>Try to visit algeria now</button>
                 </div>
                 <div className='w-full md:1/3 flex flex-col text-white justify-center items-center gap-4'>
                        

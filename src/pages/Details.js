@@ -1,3 +1,5 @@
+import Dynamic from "@/components/Details/Dynamic";
+import PlaceDetails from "@/components/Details/PlaceDetails";
 import Contact from "@/components/LandingPage/Contact";
 import Footer from "@/components/LandingPage/Footer";
 import LocationNav from "@/components/UserPage/LocationNav";
@@ -9,6 +11,7 @@ function Details(props) {
     <section>
       <Navbar/>
       <LocationNav/>
+      <PlaceDetails/>
       <Contact/>
       <Footer/>
     </section>

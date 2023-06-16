@@ -1,13 +1,13 @@
 import React from 'react';
-
 import Image from 'next/image';
 import Link from 'next/link';
  
 
 function Header(props) {
+    
     return (
         <section className='w-full bg-transparent flex flex-col'>
-            <div id='hider' className='w-full h-48 flex items-center justify-start pl-40'> 
+            <div id='hider' className='w-full h-48 flex items-center justify-start pl-40' onClick={()=>GetAllPlaces}> 
             <Image width={250} height={70} src="/Asset 2 1.png" alt='' className='object-contain'/>
             </div>
             <div className='w-full h-8 flex flex-col justify-center items-center gap-4'>
