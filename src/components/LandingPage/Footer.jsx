@@ -1,15 +1,20 @@
-import Link from 'next/link';
-import React from 'react';
-
+import React, { useState } from 'react';
+import { Icon } from 'react-icons-kit';
+import {androidMail} from 'react-icons-kit/ionicons/androidMail'
 import ScrollToTopButton from './ScrollToTopButton';
+import ContactForm from '../Description/ContactForm';
 
 
 function Footer(props) {
-
+    const[Open,setOpen] = useState(false)
   
     return (
-        <section className='w-full '>
-            <div className='w-full flex flex-col md:flex-row justify-center md:justify-between h-3/4 bg-[#104A7A] py-20 gap-4 md:gap-0'>
+        <section className='w-full relative'>
+            {Open ? <ContactForm/> : <></>}
+            <div className='w-full flex items-center justify-end bg-[#104A7A] pr-3' >
+            <Icon size={40}  style={{ color: '#00ffAA' }} icon={androidMail} onClick={()=> {setOpen(!Open)}}/> 
+            </div>
+            <div className='w-full flex flex-col md:flex-row justify-center md:justify-between h-8/12 bg-[#104A7A] py-20 gap-4 md:gap-0'>
                 <div className='w-full md:1/3 flex items-center justify-center'>
                      <img src='/Asset 1 1.png' alt='' className='w-[192px] h-[183px]'/>
                 </div>
@@ -27,7 +32,7 @@ function Footer(props) {
                         
                 </div>
             </div>
-            <div className='w-full h-1/4 flex items-center justify-center bg-[#09375D]'>
+            <div className='w-full h-2/12 flex items-center justify-center bg-[#09375D]'>
                 <p className='text-md text-white font-bold'>© 2023 TOURISMO. All rights reserved</p>
             </div>
         </section>

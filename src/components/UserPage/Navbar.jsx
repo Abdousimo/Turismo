@@ -95,7 +95,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       <div
-        className={`${isOpen ? 'block w-full' : 'hidden'} md:hidden absolute z-50`}
+        className={`${isOpen ? 'block w-full' : 'hidden'} sm:hidden absolute z-50`}
         id="mobile-menu"
       >
         <div className="flex flex-col gap-4 items-start justify-center px-2 py-4 bg-[#003554] border-t-white border-t-4">

@@ -1,13 +1,15 @@
+import Nav from '@/components/Description/Nav';
 import Footer from '@/components/LandingPage/Footer';
 import LocationNav from '@/components/UserPage/LocationNav';
-import Navbar from '@/components/UserPage/Navbar';
 import React from 'react';
+import Comment from '@/components/Description/Comment';
 
 function Description(props) {
     return (
         <section>
-            <Navbar/>
+            <Nav/>
             <LocationNav/>
+            <Comment/>
             <Footer/>
         </section>
     );

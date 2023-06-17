@@ -16,7 +16,8 @@ function Drop_down(props) {
         {name:"Beaches",isSelected:false}
         ,{name:"Religious sites",isSelected:false},
         {name:"Markets",isSelected:false},
-        {name:"Restaurant",isSelected:false}
+        {name:"Restaurant",isSelected:false},
+        {name:"Event",isSelected:false}
         ])
         const [Themes,setThemes] = useState([
             {name:"History and Heritage",isSelected:true},
@@ -28,7 +29,7 @@ function Drop_down(props) {
             {name:"Markets and shopping",isSelected:false},
             {name:"Gastronomy and cooking",isSelected:false},
             {name:"Adventures and sports",isSelected:false},
-            {name:"Education and learning",isSelected:false}        
+            {name:"Education and learning",isSelected:false}      
         ])
 
         const handleClick = (id) => {
