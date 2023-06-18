@@ -62,11 +62,29 @@ function Drop_down(props) {
                     setIsHistoryOpen(false)
           }
 
+          function countWords(str) {
+            // Remove leading/trailing white spaces
+            str = str.trim();
+          
+            // Split the string into an array of words using regular expression
+            const words = str.split(/\s+/);
+          
+            // Return the length of the words array
+            return words.length;
+          }
+          
+
           const handleValider = () => {
-           
-            const newdata = data.replace(/\s/g, "%20");
+            router.push('/Search')
+            let newdata =  data.toLowerCase();
+             newdata = newdata.replace(/\s/g, "%20");
             console.log(newdata);
-            axios.get('https://tourismo-api.onrender.com/places/filter/?theme='+newdata)
+            let url = ''
+            if (countWords(newdata) === 1) {
+                 url = 'https://tourismo-api.onrender.com/places/filter/?category='+newdata
+                
+            }else url =  'https://tourismo-api.onrender.com/places/filter/?theme='+newdata
+        axios.get(url)
         .then(response => {
           setData(response.data);
           console.log(response.data);

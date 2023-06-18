@@ -10,7 +10,7 @@ function AllComments(props) {
    },[])
     useEffect(()=>{
         if(!place?.id) return
-        axios.get('https://tourismo-api.onrender.com/comments/')
+        axios.get('https://tourismo-api.onrender.com/places/'+place.id+'/approvedcomments/')
   .then(response => {
     setData(response.data);
     console.log(response.data);

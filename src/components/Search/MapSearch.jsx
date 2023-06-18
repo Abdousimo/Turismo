@@ -5,22 +5,25 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import "leaflet-defaulticon-compatibility";
 import { MapContainer, TileLayer,Marker,Popup } from 'react-leaflet'
 import { useState,useEffect } from 'react';
+
 function MapSearch(props) {
-    const [data, setData] = useState([]);
-    const[reload,setReload] = useState(false)
+    const[data,setData] = useState([])
+    useEffect(() => {
+      setData(JSON.parse(localStorage.getItem("Places")));
+      addEventListener("storage",() =>{
+        setData(JSON.parse(localStorage.getItem("Places")));
+      })
+      }, []);
+
+
         const handleClickLink = (place) =>{
             const jsonPlace = JSON.stringify(place)
             window.localStorage.setItem("Temporary_Place",jsonPlace)
         }
     
-    useEffect(() => {
-          setData(JSON.parse(localStorage.getItem("Places")));
-          setReload(!reload)
-        }, []);
+    
 
-        useEffect(() => {
-            setData(JSON.parse(localStorage.getItem("Places")));
-          }, [!reload]);
+        
 
        
      
@@ -32,26 +35,26 @@ function MapSearch(props) {
         attribution='Map data &copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors, <a href=&quot;https://creativecommons.org/licenses/by-sa/2.0/&quot;>CC-BY-SA</a>, Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>'
       />
       <div>
-        {
-        data.map((place,index) => 
-          
-          
-        <Marker 
-            key={index}
-            position={[place.lat, place.long]}
-            draggable={true}
-            animate={true}
-          >
-          <Popup>
-            <div className='text-xl text-indigo-500 font-OPENSANS font-semibold hover:border-b-2 hover:border-b-slate-400'>
-            <Link href={'/Details'} onClick={() => handleClickLink(place)}>{place.name}</Link>
-            </div>
-          </Popup>
-        </Marker>
-          )
-        }
-      </div>
-    </MapContainer>
+      {
+
+data ? data.map((place,index) => (
+       <Marker 
+         key={index}
+         position={[place.lat, place.long]}
+         draggable={true}
+         animate={true}
+       >
+       <Popup>
+         <div className='text-xl text-indigo-500 font-OPENSANS font-semibold hover:border-b-2 hover:border-b-slate-400'>
+         <Link href={'/Details'} onClick={() => handleClickLink(place)}>{place.name}</Link>
+         </div>
+       </Popup>
+     </Marker>
+       )) : null
+     }
+                                
+        </div>
+        </MapContainer>
             
         </section>
     );

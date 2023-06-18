@@ -25,7 +25,12 @@ function PlaceRating(props) {
 },[place?.id])
     return (
         <section>
-            <h1 className='text-slate-500'><span className='text-md  font-OPENSANS font-semibold'>Rating: </span><span className='text-md font-OPENSANS font-semibold'>{data.rating_average}</span></h1>
+            <div className='flex'>
+            <span className='text-md  font-OPENSANS font-semibold'>Rating: </span>
+            <div className='text-md font-OPENSANS font-semibold'>
+                {data.rating_average}
+            </div>
+            </div>
         </section>
     );
 }

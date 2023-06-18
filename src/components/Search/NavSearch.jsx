@@ -8,7 +8,6 @@ function NavSearch(props) {
               <Link href={'/'} className='font-OPENSANS font-bold pb-1 hover:border-b-[#003554] hover:border-b-2' ><Image src={'/Group.png'} alt='' width={25} height={25} style={{width:"auto",height:'auto'}} onClick={()=> {localStorage.setItem("Places",null)}}/></Link> 
                <span className='text-[#003554] font-OPENSANS font-bold'><AiOutlineRight size={20}/></span>
                <Link href={'/User'} className='text-[#003554] font-OPENSANS font-bold pb-1 hover:border-b-[#003554] hover:border-b-2' onClick={()=> {localStorage.setItem("Places",null)}}>Tourisme</Link>
-               <span className='text-[#003554] font-OPENSANS font-bold'><AiOutlineRight size={20}/></span>
           </section> 
     );
 }

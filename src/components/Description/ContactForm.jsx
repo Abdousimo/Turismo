@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import postData from './PostData';
-
-const ContactForm = () => {
+import { useRouter } from 'next/router';
+const ContactForm = (props) => {
 
   const [email, setEmail] = useState('');
   const [region, setRegion] = useState('');
   const [city, setCity] = useState('');
   const[ville,setVille] = useState(false)
   const[jiha,setJiha] = useState(false)
+  const router = useRouter()
   const handleSubmit = (e) => {
     e.preventDefault();
     const data1 = {
@@ -28,7 +29,9 @@ const ContactForm = () => {
          console.log(JSONdata);
         postData(JSONdata,'https://tourismo-api.onrender.com/newsletter/ville/')
       }
-     
+
+     router.push(router.pathname)
+     props.setOpen(false)
     // Perform your form submission logic here
   };
   

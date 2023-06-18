@@ -91,7 +91,7 @@ const Navbar = () => {
                                     {/* Navigation links */}
                     <Drop_down/>
                     
-                    <form onSubmit={handleSubmit} className="max-w-sm w-[170px] h-14 flex  items-center p-0 rounded-lg">
+                    <form onSubmit={handleSubmit} className="max-w-sm w-[200px] h-14 flex  items-center p-0 rounded-lg">
                 
                 <input
                    id="search"
@@ -124,7 +124,7 @@ const Navbar = () => {
             
             <Drop_down/>
             
-            <form onSubmit={handleSubmit} className="max-w-sm w-[170px] h-14 flex  items-center p-0 rounded-lg">
+            <form onSubmit={handleSubmit} className="max-w-sm w-[200px] h-14 flex  items-center p-0 rounded-lg">
                 
                  <input
                     id="search"

@@ -10,7 +10,7 @@ function Footer(props) {
   
     return (
         <section className='w-full relative'>
-            {Open ? <ContactForm/> : <></>}
+            {Open ? <ContactForm setOpen={setOpen}/> : <></>}
             <div className='w-full flex items-center justify-end bg-[#104A7A] pr-3' >
             <Icon size={40}  style={{ color: '#fff' }} icon={androidMail} onClick={()=> {setOpen(!Open)}}/> 
             </div>
