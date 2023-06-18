@@ -12,7 +12,7 @@ function Footer(props) {
         <section className='w-full relative'>
             {Open ? <ContactForm/> : <></>}
             <div className='w-full flex items-center justify-end bg-[#104A7A] pr-3' >
-            <Icon size={40}  style={{ color: '#00ffAA' }} icon={androidMail} onClick={()=> {setOpen(!Open)}}/> 
+            <Icon size={40}  style={{ color: '#fff' }} icon={androidMail} onClick={()=> {setOpen(!Open)}}/> 
             </div>
             <div className='w-full flex flex-col md:flex-row justify-center md:justify-between h-8/12 bg-[#104A7A] py-20 gap-4 md:gap-0'>
                 <div className='w-full md:1/3 flex items-center justify-center'>

@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { HiMagnifyingGlass } from "react-icons/hi2"
-
+import axios from 'axios';
 import Drop_down from './Drop_down';
-
-
+import Link from 'next/link';
+import { useRouter } from 'next/router'
 
 const Navbar = () => {
+    const router = useRouter()
   const [isOpen, setIsOpen] = useState(false);
-  
-  const [name, setName] = useState('');
-
- 
-
+  const[search,setSearch] = useState('')
+  const[data,setData] = useState([])
   const handleSubmit = (e) => {
+    router.push('/Search')
     e.preventDefault();
-    console.log(name); // You can perform further actions with the name value here
+     axios.get('https://tourismo-api.onrender.com/places/search/?query='+search)
+        .then(response => {
+          setData(response.data);
+          console.log(response.data);
+          const jsonData = JSON.stringify(response.data)
+          localStorage.setItem("Places",jsonData)
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
   };
 
 
@@ -83,10 +91,24 @@ const Navbar = () => {
                                     {/* Navigation links */}
                     <Drop_down/>
                     
-                    <button  className="max-w-sm w-[150px] h-14 mx-auto flex justify-between items-center px-2 rounded-lg bg-slate-400 text-white">
-                        <span>Search</span>
-                        <HiMagnifyingGlass size={20}/>
+                    <form onSubmit={handleSubmit} className="max-w-sm w-[170px] h-14 flex  items-center p-0 rounded-lg">
+                
+                <input
+                   id="search"
+                   type="text"
+                   onChange={(e) => setSearch(e.target.value)}
+                   value={search}
+                   className="w-9/12 h-full p-2 rounded-l-lg focus:outline-none focus:border-blue-500"
+                   required
+                   placeholder='Search'
+                    />
+                    <button
+                       type="submit"
+                       className="h-full w-3/12 p-1 flex items-center justify-center text-white bg-slate-400 rounded-r-lg hover:bg-blue-600">
+                             <Link href={'/Search'}><HiMagnifyingGlass size={20}/></Link>
                     </button>
+                       
+           </form>
                 </div>
             </div>
                 </div>
@@ -101,10 +123,26 @@ const Navbar = () => {
         <div className="flex flex-col gap-4 items-start justify-center px-2 py-4 bg-[#003554] border-t-white border-t-4">
             
             <Drop_down/>
-            <button  className="max-w-sm w-[150px] h-14 flex justify-between items-center px-2 rounded-lg bg-slate-400 text-white">
-                        <span>Search</span>
-                        <HiMagnifyingGlass size={20}/>
-                    </button>
+            
+            <form onSubmit={handleSubmit} className="max-w-sm w-[170px] h-14 flex  items-center p-0 rounded-lg">
+                
+                 <input
+                    id="search"
+                    type="text"
+                    onChange={(e) => setSearch(e.target.value)}
+                    value={search}
+                    className="w-9/12 h-full p-2 rounded-l-lg focus:outline-none focus:border-blue-500"
+                    required
+                    placeholder='Search'
+                     />
+                     <button
+                        type="submit"
+                        className="h-full w-3/12 p-1 flex items-center justify-center text-white bg-slate-400 rounded-r-lg hover:bg-blue-600">
+                              <HiMagnifyingGlass size={20}/>
+                     </button>
+                        
+            </form>
+            
         </div>
       </div>
         

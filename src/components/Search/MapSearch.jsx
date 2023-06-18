@@ -1,38 +1,33 @@
-import { MapContainer, TileLayer,Marker,Popup } from 'react-leaflet'
+import React from 'react';
 import Link from 'next/link';
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
 import "leaflet-defaulticon-compatibility";
+import { MapContainer, TileLayer,Marker,Popup } from 'react-leaflet'
 import { useState,useEffect } from 'react';
-import axios from 'axios';
-
-const Map = () => {
-  
-  const [data, setData] = useState([]);
- const handleClickLink = (place) =>{
-     const jsonPlace = JSON.stringify(place)
-     window.localStorage.setItem("Temporary_Place",jsonPlace)
- }
-
-  useEffect(() => {
+function MapSearch(props) {
+    const [data, setData] = useState([]);
+    const[reload,setReload] = useState(false)
+        const handleClickLink = (place) =>{
+            const jsonPlace = JSON.stringify(place)
+            window.localStorage.setItem("Temporary_Place",jsonPlace)
+        }
     
-    axios.get('https://tourismo-api.onrender.com/places/')
-    .then(response => {
-     setData(response.data);
-      console.log(response.data);
-      
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    });
-      
-      
-      
-  }, []);
- 
-  return (
-    <MapContainer center={[36, 3.5]} zoom={8} scrollWheelZoom={false} style={{height: "100vh", width: "100%"}}>
-      <TileLayer
+    useEffect(() => {
+          setData(JSON.parse(localStorage.getItem("Places")));
+          setReload(!reload)
+        }, []);
+
+        useEffect(() => {
+            setData(JSON.parse(localStorage.getItem("Places")));
+          }, [!reload]);
+
+       
+     
+    return (
+        <section>
+          <MapContainer center={[36, 3.5]} zoom={8} scrollWheelZoom={false} style={{height: "100vh", width: "100%"}}>
+           <TileLayer
         url={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaXNtYWlsMjIiLCJhIjoiY2xoeXF4NWppMTY5MDNmcGdqb2s2dWY1OCJ9.Gv3x3A_7lDOG-aQx8XsBhQ`}
         attribution='Map data &copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors, <a href=&quot;https://creativecommons.org/licenses/by-sa/2.0/&quot;>CC-BY-SA</a>, Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>'
       />
@@ -57,7 +52,9 @@ const Map = () => {
         }
       </div>
     </MapContainer>
-  )
+            
+        </section>
+    );
 }
 
-export default Map
+export default MapSearch;

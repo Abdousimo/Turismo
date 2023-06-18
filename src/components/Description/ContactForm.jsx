@@ -2,13 +2,14 @@ import { useState } from 'react';
 import postData from './PostData';
 
 const ContactForm = () => {
+
   const [email, setEmail] = useState('');
   const [region, setRegion] = useState('');
   const [city, setCity] = useState('');
   const[ville,setVille] = useState(false)
   const[jiha,setJiha] = useState(false)
   const handleSubmit = (e) => {
-    
+    e.preventDefault();
     const data1 = {
         email: email,
         region: region,
@@ -27,8 +28,10 @@ const ContactForm = () => {
          console.log(JSONdata);
         postData(JSONdata,'https://tourismo-api.onrender.com/newsletter/ville/')
       }
+     
     // Perform your form submission logic here
   };
+  
 
   return (
     <div className="max-w-md mx-auto min-h-96 bg-slate-200 px-3 py-2 absolute right-2 top-[-320px] z-50 rounded-lg">

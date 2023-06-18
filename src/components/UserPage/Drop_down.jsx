@@ -2,8 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import {AiOutlineDownCircle,AiOutlineUpCircle} from "react-icons/ai"
 import Image from 'next/image';
+import { useRouter } from 'next/router'
+import axios from 'axios';
+
 function Drop_down(props) {
+    const router = useRouter()
     const[Open,setOpen] = useState(false);
+    const[data,setData] = useState('')
     const[DefaultTheme,setDefaultTheme] = useState("History and Heritage")
     const[isHistoryOpen,setIsHistoryOpen]=useState(false)
     const [buttons,setButtons]=useState([
@@ -38,7 +43,8 @@ function Drop_down(props) {
             // Modify the desired value(s) in the object
         
               newArray[id].isSelected = !(newArray[id].isSelected);
-        
+              setData(newArray[id].name)
+              console.log(data);
             // Update the state with the modified array
             setButtons(newArray);
           };
@@ -49,9 +55,29 @@ function Drop_down(props) {
                 if (id !== 0) {
                     newArray[0].isSelected = false;
                 }
-                    setDefaultTheme(newArray[id].name) 
+                    setDefaultTheme(newArray[id].name)
+                    setData(newArray[id].name)
+                    console.log(data); 
                     setThemes(newArray)
                     setIsHistoryOpen(false)
+          }
+
+          const handleValider = () => {
+           
+            const newdata = data.replace(/\s/g, "%20");
+            console.log(newdata);
+            axios.get('https://tourismo-api.onrender.com/places/filter/?theme='+newdata)
+        .then(response => {
+          setData(response.data);
+          console.log(response.data);
+          const jsonData = JSON.stringify(response.data)
+          localStorage.setItem("Places",jsonData)
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+
+ 
           }
     
     return (
@@ -107,7 +133,7 @@ function Drop_down(props) {
                 </div>
             </div>
             <div className='flex justify-end my-10 pr-4'>
-                <button className='w-20 h-10 bg-indigo-900 text-white font-OPENSANS font-bold p-2 rounded-md'>Valider</button>
+                <button className='w-20 h-10 bg-indigo-900 text-white font-OPENSANS font-bold p-2 rounded-md' onClick={()=> handleValider()}>Valider</button>
             </div>
         </div> : <></>}
 
